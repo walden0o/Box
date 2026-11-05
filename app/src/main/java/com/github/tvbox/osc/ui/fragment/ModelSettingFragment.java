@@ -108,6 +108,9 @@ public class ModelSettingFragment extends BaseLazyFragment {
         tvDebugOpen.setText(Hawk.get(HawkConfig.DEBUG_OPEN, false) ? "开启" : "关闭");
         tvApi = findViewById(R.id.tvApi);
         tvApi.setText(Hawk.get(HawkConfig.API_URL, ""));
+        // Family build: config source rows stay hidden unless unlocked by the dev gesture (press 0 x4 in Settings)
+        findViewById(R.id.llApi).setVisibility(View.GONE);
+        findViewById(R.id.llApiHistory).setVisibility(View.GONE);
         // Home Section
         tvHomeApi = findViewById(R.id.tvHomeApi);
         tvHomeApi.setText(ApiConfig.get().getHomeSourceBean().getName());
@@ -815,6 +818,8 @@ public class ModelSettingFragment extends BaseLazyFragment {
             @Override
             public void onChange() {
                 findViewById(R.id.llDebug).setVisibility(View.VISIBLE);
+                findViewById(R.id.llApi).setVisibility(View.VISIBLE);
+                findViewById(R.id.llApiHistory).setVisibility(View.VISIBLE);
             }
         };
 
